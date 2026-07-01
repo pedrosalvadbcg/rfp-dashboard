@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemas.azure.com/staticwebapp.config.json",
+  "routes": [
+    { "route": "/.auth/login/github", "statusCode": 404 },
+    { "route": "/*", "allowedRoles": ["authenticated"] }
+  ],
+  "responseOverrides": {
+    "401": { "redirect": "/.auth/login/aad", "statusCode": 302 }
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "no-referrer"
+  },
+  "mimeTypes": {
+    ".html": "text/html"
+  }
+}
